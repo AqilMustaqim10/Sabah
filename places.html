@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discover Sabah - Places to Visit</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="food.html">Food</a>
+      <a href="places.html">Places</a>
+      <a href="tips.html">Tips</a>
+    </nav>
+
+    <section id="places">
+      <h2>Top Tourist Attractions in Sabah</h2>
+
+      <!-- Each Place Section -->
+      <article class="place">
+        <div class="place-content">
+          <div class="place-text">
+            <h3>Kinabalu Park</h3>
+            <p>
+              Kinabalu Park is Malaysia’s very first UNESCO World Heritage Site
+              and a crown jewel of Sabah. Dominated by the towering Mount
+              Kinabalu, the highest peak in Southeast Asia, the park is a haven
+              for outdoor enthusiasts. It boasts over 5,000 plant species, rare
+              orchids, exotic birds, and cool mountain air that offers a
+              refreshing escape from city life. Whether you're a casual hiker or
+              a serious climber, the park’s trails offer something for everyone
+              amid breathtaking scenery.
+            </p>
+          </div>
+          <div class="slider-container" data-slider="kinabalu">
+            <img
+              src="img/kinabalu_park.jpg"
+              alt="Kinabalu Park 1"
+              class="slider-slide"
+            />
+            <video class="slider-slide" muted loop controls>
+              <source src="video/kinabalu_park.mp4" type="video/mp4" />
+            </video>
+            <img
+              src="img/kinabalu_park2.jpg"
+              alt="Kinabalu Park 2"
+              class="slider-slide"
+            />
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="place">
+        <div class="place-content">
+          <div class="slider-container" data-slider="sipadan">
+            <img
+              src="img/sipadan1.jpg"
+              alt="Sipadan Island 1"
+              class="slider-slide"
+            />
+            <video class="slider-slide" muted loop controls>
+              <source src="video/sipadan.mp4" type="video/mp4" />
+            </video>
+            <img
+              src="img/sipadan2.jpg"
+              alt="Sipadan Island 2"
+              class="slider-slide"
+            />
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+          </div>
+          <div class="place-text">
+            <h3>Sipadan Island</h3>
+            <p>
+              Widely regarded as one of the top dive sites in the world, Sipadan
+              Island is a diver’s dream. This oceanic island, formed by living
+              corals growing on an extinct volcanic cone, is teeming with marine
+              life. Expect encounters with sea turtles, reef sharks, barracudas,
+              and swirling schools of fish. The waters are crystal clear, the
+              reefs are vibrant, and the biodiversity is unmatched. Strict
+              visitor limits help preserve the ecosystem, making every visit a
+              rare and special experience.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="place">
+        <div class="place-content">
+          <div class="place-text">
+            <h3>Lok Kawi Wildlife Park</h3>
+            <p>
+              Just a short drive from Kota Kinabalu, Lok Kawi Wildlife Park
+              offers a glimpse into Borneo’s unique and endangered wildlife.
+              Designed with families in mind, the park features a zoological
+              section and a botanical garden. You’ll find orangutans, proboscis
+              monkeys, Malayan tigers, and pygmy elephants in spacious
+              enclosures that aim to mimic their natural habitats. It’s a great
+              stop for learning about Sabah’s wildlife conservation efforts and
+              for enjoying a fun, educational outing.
+            </p>
+          </div>
+          <div class="slider-container" data-slider="lokkawi">
+            <img
+              src="img/lokkawi1.jpg"
+              alt="Lok Kawi Wildlife Park 1"
+              class="slider-slide"
+            />
+            <video class="slider-slide" muted loop controls>
+              <source src="video/lokkawi.mp4" type="video/mp4" />
+            </video>
+            <img
+              src="img/lokkawi2.jpg"
+              alt="Lok Kawi Wildlife Park 2"
+              class="slider-slide"
+            />
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer id="footer">
+      <p>© 2025 Visit Sabah. All rights reserved.</p>
+      <div class="social-icons">
+        <a
+          href="https://www.facebook.com/share/1as42r7a6p/?mibextid=wwXIfr"
+          target="_blank"
+          aria-label="Facebook"
+          ><i class="fa-brands fa-facebook-f"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/visitmalaysia2025"
+          target="_blank"
+          aria-label="Instagram"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a
+          href="https://x.com/tourismmalaysia?s=11&t=3LoK72kDIV2mLubXX2r7BQ"
+          target="_blank"
+          aria-label="Twitter"
+          ><i class="fa-brands fa-twitter"></i
+        ></a>
+      </div>
+    </footer>
+
+    <!-- Slider Script -->
+    <script>
+      const sliders = {};
+
+      document.querySelectorAll(".slider-container").forEach((container) => {
+        const sliderId = container.getAttribute("data-slider");
+        sliders[sliderId] = 0;
+
+        const slides = container.querySelectorAll(".slider-slide");
+        const prevBtn = container.querySelector(".prev");
+        const nextBtn = container.querySelector(".next");
+
+        function showSlide(index) {
+          slides.forEach((slide, i) => {
+            slide.style.display = i === index ? "block" : "none";
+            if (slide.tagName === "VIDEO") {
+              i === index
+                ? slide.play()
+                : (slide.pause(), (slide.currentTime = 0));
+            }
+          });
+        }
+
+        function nextSlide() {
+          sliders[sliderId] = (sliders[sliderId] + 1) % slides.length;
+          showSlide(sliders[sliderId]);
+        }
+
+        function prevSlide() {
+          sliders[sliderId] =
+            (sliders[sliderId] - 1 + slides.length) % slides.length;
+          showSlide(sliders[sliderId]);
+        }
+
+        nextBtn.addEventListener("click", nextSlide);
+        prevBtn.addEventListener("click", prevSlide);
+        showSlide(0);
+      });
+    </script>
+  </body>
+</html>
